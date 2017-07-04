@@ -3,6 +3,12 @@ require 'rails_helper'
 RSpec.describe Shares do
   subject { described_class.new 'http://www.tksasha.me' }
 
+  describe '#facebook_access_token' do
+    before { expect(ENV).to receive(:[]).with('FACEBOOK_ACCESS_TOKEN').and_return('XXXX-YYYY-ZZZZ') }
+
+    its(:facebook_access_token) { should eq 'XXXX-YYYY-ZZZZ' }
+  end
+
   describe '#json' do
     let(:json) do
       <<-eos
@@ -16,11 +22,13 @@ RSpec.describe Shares do
       eos
     end
 
+    before { expect(subject).to receive(:facebook_access_token).and_return('TOKEN') }
+
     before do
       #
-      # open('https://graph.facebook.com?ids=http://www.tksasha.me').read -> json
+      # open('https://graph.facebook.com?ids=http://www.tksasha.me&access_token=TOKEN').read -> json
       #
-      expect(subject).to receive(:open).with('https://graph.facebook.com?ids=http://www.tksasha.me') do
+      expect(subject).to receive(:open).with('https://graph.facebook.com?ids=http://www.tksasha.me&access_token=TOKEN') do
         double.tap { |a| expect(a).to receive(:read).and_return(json) }
       end
     end

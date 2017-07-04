@@ -11,7 +11,11 @@ class Shares
 
   private
   def json
-    JSON.parse open("#{ URL }#{ @url }").read
+    JSON.parse open("#{ URL }#{ @url }&access_token=#{ facebook_access_token }").read
+  end
+
+  def facebook_access_token
+    ENV['FACEBOOK_ACCESS_TOKEN']
   end
 
   class << self
