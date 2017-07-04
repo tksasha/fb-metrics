@@ -9,15 +9,22 @@ class URIParser
     @uri = URI.parse uri
   end
 
-  def hostname
-    @uri.hostname || @uri.path
+  def parse
+    URI::Generic.build scheme: scheme, host: host
+  end
+
+  private
+  def host
+    @uri.host || @uri.path
   end
 
   def scheme
     @uri.scheme || DEFAULT_SCHEME
   end
 
-  def scheme_and_host
-    "#{ scheme }://#{ hostname }"
+  class << self
+    def parse *args
+      new(*args).parse
+    end
   end
 end
