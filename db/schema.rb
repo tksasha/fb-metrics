@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3) do
+ActiveRecord::Schema.define(version: 4) do
+
+  create_table "metrics", force: :cascade do |t|
+    t.integer "page_id"
+    t.integer "shares_count", default: 0
+    t.index ["page_id"], name: "index_metrics_on_page_id"
+  end
 
   create_table "pages", force: :cascade do |t|
     t.string "url"
