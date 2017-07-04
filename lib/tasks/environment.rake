@@ -8,5 +8,9 @@ end
 #
 # `rake db:*`
 #
-spec = Gem::Specification.find_by_name 'activerecord'
-load "#{ spec.gem_dir }/lib/active_record/railties/databases.rake"
+load "#{ Gem::Specification.find_by_name('activerecord').gem_dir }/lib/active_record/railties/databases.rake"
+
+#
+# `rake spec`
+#
+load "#{ Gem::Specification.find_by_name('rspec-rails').gem_dir }/lib/rspec/rails/tasks/rspec.rake"

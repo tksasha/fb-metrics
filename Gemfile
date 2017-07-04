@@ -6,3 +6,8 @@ gem 'sqlite3'
 gem 'nokogiri'
 gem 'activerecord', require: 'active_record'
 gem 'railties'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'rspec-its'
+end
