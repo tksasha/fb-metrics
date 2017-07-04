@@ -1,4 +1,3 @@
-task metrics: :environment do
-  puts Rails.root
-  puts Rails.env
+task :metrics, [:uri, :depth] => :environment do |task, attributes|
+  MetricFactory.create uri: attributes[:uri], depth: attributes[:depth]
 end
