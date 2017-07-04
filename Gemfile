@@ -10,4 +10,5 @@ gem 'railties'
 group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-its'
+  gem 'shoulda-matchers'
 end
