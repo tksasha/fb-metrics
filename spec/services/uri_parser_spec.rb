@@ -9,6 +9,8 @@ RSpec.describe URIParser do
     its(:scheme) { should eq 'http' }
 
     its(:hostname) { should eq 'www.tksasha.me' }
+
+    its(:scheme_and_host) { should eq 'http://www.tksasha.me' }
   end
 
   context do
@@ -17,6 +19,8 @@ RSpec.describe URIParser do
     its(:scheme) { should eq 'https' } 
 
     its(:hostname) { should eq 'www.tksasha.me' }
+
+    its(:scheme_and_host) { should eq 'https://www.tksasha.me' }
   end
 
   context do
@@ -25,6 +29,8 @@ RSpec.describe URIParser do
     its(:scheme) { should eq 'http' }
 
     its(:hostname) { should eq 'www.tksasha.me' }
+
+    its(:scheme_and_host) { should eq 'http://www.tksasha.me' }
   end
 
   context do
@@ -33,6 +39,8 @@ RSpec.describe URIParser do
     its(:scheme) { should eq 'http' }
 
     its(:hostname) { should eq 'www.tksasha.me' }
+
+    its(:scheme_and_host) { should eq 'http://www.tksasha.me' }
   end
 
   context do
@@ -41,5 +49,7 @@ RSpec.describe URIParser do
     its(:scheme) { should eq 'http' }
 
     its(:hostname) { should eq 'www.tksasha.me' }
+
+    its(:scheme_and_host) { should eq 'http://www.tksasha.me' }
   end
 end

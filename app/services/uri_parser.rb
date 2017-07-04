@@ -16,4 +16,8 @@ class URIParser
   def scheme
     @uri.scheme || DEFAULT_SCHEME
   end
+
+  def scheme_and_host
+    "#{ scheme }://#{ hostname }"
+  end
 end
