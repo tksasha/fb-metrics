@@ -3,6 +3,8 @@
 #
 task :environment do
   ActiveRecord::Base.establish_connection YAML.load_file('config/database.yml')[Rails.env]
+
+  Dir[Rails.root.join('app/*/*.rb')].each { |f| require f }
 end
 
 #
