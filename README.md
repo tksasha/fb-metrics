@@ -16,6 +16,8 @@ rake
 ```
 cd fb-metrics/
 
+echo "FACEBOOK_ACCESS_TOKEN = ACTUAL_FACEBOOK_ACCESS_TOKEN" > .env
+
 rake db:migrate
 
 rake metrics[www.nike.com,42]
