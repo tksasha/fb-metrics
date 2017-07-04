@@ -4,22 +4,17 @@ class URIParser
   SCHEMES = %r(^(http|https|//))
 
   def initialize uri
-    uri = "#{ DEFAULT_SCHEME }://#{ uri }" unless uri =~ SCHEMES
-
-    @uri = URI.parse uri
+    @uri = uri
   end
 
   def parse
-    URI::Generic.build scheme: scheme, host: host
-  end
+    @uri = "#{ DEFAULT_SCHEME }://#{ @uri }" unless @uri =~ SCHEMES
 
-  private
-  def host
-    @uri.host || @uri.path
-  end
+    @uri = URI.parse @uri
 
-  def scheme
-    @uri.scheme || DEFAULT_SCHEME
+    @uri.scheme = DEFAULT_SCHEME unless @uri.scheme
+
+    @uri
   end
 
   class << self
