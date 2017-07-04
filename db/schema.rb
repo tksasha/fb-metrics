@@ -10,9 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 1) do
+ActiveRecord::Schema.define(version: 3) do
 
   create_table "pages", force: :cascade do |t|
+    t.string "url"
+    t.integer "site_id"
+  end
+
+  create_table "sites", force: :cascade do |t|
     t.string "url"
   end
 

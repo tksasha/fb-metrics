@@ -11,4 +11,5 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-its'
   gem 'shoulda-matchers'
+  gem 'rspec-activemodel-mocks'
 end
