@@ -42,4 +42,4 @@ RAILS_ENV=production rake metrics[www.nike.com,42]
 - get `Facebook Access Token` from the `Graph API`;
 
 # Note
-`Facebook Access Token` is required to prevent `403` error;
+`Facebook Access Token` is required to prevent `403` error when we send many requests to Facebook.
