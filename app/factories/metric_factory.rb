@@ -1,15 +1,21 @@
 require 'open-uri'
 
 class MetricFactory
+  attr_accessor :depth
+
   delegate :scheme, :host, to: :uri
 
   def initialize params={}
     @uri = params[:uri]
 
-    @depth = params[:depth]
+    @depth = params[:depth].to_i
   end
 
   def create
+    return if depth.zero?
+
+    self.depth -= 1
+
     links.map do |link|
       Rails.logger.info link.to_s
 
@@ -22,6 +28,8 @@ class MetricFactory
       else
         page.create_metric shares_count: shares_count
       end
+
+      MetricFactory.create uri: link.to_s, depth: depth
     end
   end
 
