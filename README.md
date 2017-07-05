@@ -35,7 +35,7 @@ RAILS_ENV=production rake metrics[www.nike.com,42]
 ```
 
 # TODO:
-- [] catch errors with redirect because `nike.com` doesn't work only `www.nike.com`;
-- [] make decision with links like `http://www.tksasha.me/companies.html?first=true&second=true` because Facebook store it like `http://www.tksasha.me/companies.html?first=true` (without parameters after ampersand `&`);
-- [] add multithreading or another decision for paraller processing pages (maybe `Sidekiq`);
-- [] find and catch all possible errors;
+- catch errors with redirect because `nike.com` doesn't work only `www.nike.com`;
+- make decision with links like `http://www.tksasha.me/companies.html?first=true&second=true` because Facebook store it like `http://www.tksasha.me/companies.html?first=true` (without parameters after ampersand `&`);
+- add multithreading or another decision for paraller pages processing (maybe `Sidekiq`);
+- catch all possible errors with timeouts or bad data from responces;
