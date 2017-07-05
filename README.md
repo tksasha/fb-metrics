@@ -40,3 +40,6 @@ RAILS_ENV=production rake metrics[www.nike.com,42]
 - add multithreading or another decision for paraller pages processing (maybe `Sidekiq`);
 - catch all possible errors with timeouts or bad data from responces;
 - get `Facebook Access Token` from the `Graph API`;
+
+# Note
+`Facebook Access Token` is required to prevent `403` error;
