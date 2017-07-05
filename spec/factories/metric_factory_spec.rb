@@ -44,6 +44,8 @@ RSpec.describe MetricFactory do
             <a href="mailto:mail@tksasha.me">My Email</a>
             <a href="/posts.html">Posts</a>
             <a href="http://www.tksasha.me">Root</a>
+            <a href="http://www.tksasha.me/companies.html#about">Companies</a>
+            <a href="http://www.tksasha.me/companies.html?first=true&second=true">Companies</a>
           </body>
         </html>
       eos
@@ -58,7 +60,9 @@ RSpec.describe MetricFactory do
         URI::Generic.build(scheme: 'http', host: 'www.tksasha.me', path: '/companies.html', query: 'param=true'),
         URI::HTTP.build(scheme: 'http', host: 'www.tksasha.me', path: '/companies.html'),
         URI::Generic.build(scheme: 'http', host: 'www.tksasha.me', path: '/posts.html'),
-        URI::HTTP.build(scheme: 'http', host: 'www.tksasha.me', path: '/')
+        URI::HTTP.build(scheme: 'http', host: 'www.tksasha.me', path: '/'),
+        URI::HTTP.build(scheme: 'http', host: 'www.tksasha.me', path: '/companies.html'),
+        URI::HTTP.build(scheme: 'http', host: 'www.tksasha.me', path: '/companies.html', query: 'first=true'),
       ]
     end
   end

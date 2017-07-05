@@ -44,7 +44,11 @@ class MetricFactory
 
   def links
     html.css('a').map do |link|
-      href = URI.parse link.attr 'href'
+      begin
+        href = URI.parse link.attr 'href'
+      rescue URI::InvalidURIError
+        next
+      end
 
       case
       #
@@ -71,7 +75,29 @@ class MetricFactory
 
         href
       end
-    end.compact
+    end.
+    compact.
+    map do |link|
+      #
+      # remove anchors
+      #
+      # 'http://www.tksasha.me/companies.html#about' -> 'http://www.tksasha.me/companies.html'
+      #
+      link.fragment = nil
+
+      #
+      # TODO: temporary fix
+      #
+      # remove params after ampersand `&`
+      #
+      # 'http://www.tksasha.me/companies.html?first=true&second=true' -> 'http://www.tksasha.me/companies.html?first=true'
+      #
+      if link.query.present?
+        link.query = link.query.split('&').first
+      end
+
+      link
+    end
   end
 
   def site
