@@ -11,6 +11,8 @@ class MetricFactory
 
   def create
     links.map do |link|
+      Rails.logger.info link.to_s
+
       page = site.pages.find_or_create_by url: link.to_s
 
       shares_count = Shares.count link.to_s
