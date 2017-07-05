@@ -1,3 +1,3 @@
-task :metrics, [:uri, :depth] => :environment do |task, attributes|
-  MetricFactory.create uri: attributes[:uri], depth: attributes[:depth]
+task :metrics, [:url, :depth] => :environment do |task, attributes|
+  MetricFactory.create url: attributes[:url], depth: attributes[:depth]
 end
