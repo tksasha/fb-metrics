@@ -3,10 +3,10 @@ require 'open-uri'
 class MetricFactory
   attr_accessor :depth
 
-  delegate :scheme, :host, to: :uri
+  delegate :scheme, :host, to: :url
 
   def initialize params={}
-    @uri = params[:uri]
+    @url = params[:url]
 
     @depth = params[:depth].to_i
   end
@@ -29,17 +29,17 @@ class MetricFactory
         page.create_metric shares_count: shares_count
       end
 
-      MetricFactory.create uri: link.to_s, depth: depth
+      MetricFactory.create url: link.to_s, depth: depth
     end
   end
 
   private
-  def uri
-    URIParser.parse @uri
+  def url
+    URLParser.parse @url
   end
 
   def html
-    Nokogiri::HTML(open uri.to_s)
+    Nokogiri::HTML(open url.to_s)
   end
 
   def links
@@ -59,14 +59,14 @@ class MetricFactory
       #
       # avoid links like `mailto:mail@tksasha.me`
       #
-      when href.host.nil? && href.scheme.present? && href.scheme =~ URIParser::SCHEMES
+      when href.host.nil? && href.scheme.present? && href.scheme =~ URLParser::SCHEMES
         href
       #
       # like `http://www.tksasha.me/companies.html`
       #
       # where `www.tksasha.me` is the same host
       #
-      when href.host == host && href.scheme.present? && href.scheme =~ URIParser::SCHEMES
+      when href.host == host && href.scheme.present? && href.scheme =~ URLParser::SCHEMES
         href.path = '/' if href.path.empty?
 
         href

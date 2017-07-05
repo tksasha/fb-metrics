@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe MetricFactory do
-  subject { described_class.new uri: 'www.tksasha.me', depth: 42 }
+  subject { described_class.new url: 'www.tksasha.me', depth: 42 }
 
-  it { should delegate_method(:scheme).to(:uri) }
+  it { should delegate_method(:scheme).to(:url) }
 
-  it { should delegate_method(:host).to(:uri) }
+  it { should delegate_method(:host).to(:url) }
 
   it { should respond_to :depth= }
 
-  its(:uri) { should be_a URI }
+  its(:url) { should be_a URI }
 
   describe '#depth' do
     its(:depth) { should eq 42 }
@@ -94,7 +94,7 @@ RSpec.describe MetricFactory do
         end
       end
 
-      before { expect(described_class).to receive(:create).with(uri: link.to_s, depth: 41) }
+      before { expect(described_class).to receive(:create).with(url: link.to_s, depth: 41) }
 
       context do
         before { expect(page).to receive(:metric).and_return(nil) }
@@ -127,14 +127,14 @@ RSpec.describe MetricFactory do
   describe '.create' do
     before do
       #
-      # described_class.new(uri: 'www.tksasha.me', depth: 42).create
+      # described_class.new(url: 'www.tksasha.me', depth: 42).create
       #
-      expect(described_class).to receive(:new).with(uri: 'www.tksasha.me', depth: 42) do
+      expect(described_class).to receive(:new).with(url: 'www.tksasha.me', depth: 42) do
         double.tap { |a| expect(a).to receive(:create) }
       end
     end
 
-    subject { described_class.create uri: 'www.tksasha.me', depth: 42 }
+    subject { described_class.create url: 'www.tksasha.me', depth: 42 }
 
     it { expect { subject }.to_not raise_error }
   end

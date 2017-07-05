@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe URIParser do
-  subject { described_class.new uri }
+RSpec.describe URLParser do
+  subject { described_class.new url }
 
   describe '#parse' do
-    let(:uri) { 'www.tksasha.me' }
+    let(:url) { 'www.tksasha.me' }
 
-    subject { described_class.new(uri).parse }
+    subject { described_class.new(url).parse }
 
     it { should be_a URI }
 
@@ -15,7 +15,7 @@ RSpec.describe URIParser do
     its(:host) { should eq 'www.tksasha.me' }
 
     context do
-      let(:uri) { 'https://www.tksasha.me' }
+      let(:url) { 'https://www.tksasha.me' }
 
       its(:scheme) { should eq 'https' } 
 
@@ -23,7 +23,7 @@ RSpec.describe URIParser do
     end
 
     context do
-      let(:uri) { 'http://www.tksasha.me/companies.html' }
+      let(:url) { 'http://www.tksasha.me/companies.html' }
 
       its(:scheme) { should eq 'http' }
 
@@ -31,7 +31,7 @@ RSpec.describe URIParser do
     end
 
     context do
-      let(:uri) { 'www.tksasha.me/companies.html' }
+      let(:url) { 'www.tksasha.me/companies.html' }
 
       its(:scheme) { should eq 'http' }
 
@@ -39,7 +39,7 @@ RSpec.describe URIParser do
     end
 
     context do
-      let(:uri) { '//www.tksasha.me/companies.html' }
+      let(:url) { '//www.tksasha.me/companies.html' }
 
       its(:scheme) { should eq 'http' }
 
